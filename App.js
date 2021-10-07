@@ -1,21 +1,28 @@
+import React, { useLayoutEffect } from 'react';
+import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import store from './store';
+import Navigation from './pages/Navigation';
+import life from './lifeInitial';
+import localStorage from './SyncStorage';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
+
+
+  useLayoutEffect(() => {
+    (async () => {
+      await localStorage.init();
+    })()
+  }, [])
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <Provider store={store}>
       <StatusBar style="auto" />
-    </View>
+      <Navigation />
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
