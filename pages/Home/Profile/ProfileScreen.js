@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image, StyleSheet, Text, TouchableOpacity, View, Platform } from 'react-native';
-import { Switch, Colors, Dialog, Button, TextField, Toast } from 'react-native-ui-lib';
+import { Switch, Colors, Toast } from 'react-native-ui-lib';
 import { useTheme } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleDark } from '../../../reducers/config/configSlice';
@@ -22,7 +22,6 @@ export default function ProfileScreen({ navigation }) {
 
   const isDark = useSelector((state) => state.config.isDark);
 
-  // const [showDialog, setShowDialog] = useState(false);
 
   const [isToastShow, setIsToastShow] = useState(false);
 
@@ -38,10 +37,6 @@ export default function ProfileScreen({ navigation }) {
     localStorage.setItem('theme', isDark ? "light" : "dark");
     dispatch(toggleDark(!isDark));
   }
-
-  // const hideDialog = () => {
-  //   setShowDialog(false);
-  // }
 
   const dismissToast = () => {
     setIsToastShow(false);
@@ -75,70 +70,6 @@ export default function ProfileScreen({ navigation }) {
             showLoader
           />
         </View>
-        {/* <Dialog
-          useSafeArea
-          containerStyle={style.roundedDialog}
-          visible={showDialog}
-          onDismiss={hideDialog}
-          ignoreBackgroundPress={false}
-        >
-          <View>
-            <View style={{ alignItems: 'flex-end' }}>
-              <Button text60 label="X" link onPress={hideDialog} />
-            </View>
-            <Text style={style.text}>① 确定导出文件名</Text>
-            <TextField
-              placeholder='文件名'
-              style={style.text}
-              hideUnderline={false}
-              value={fileName}
-              onChangeText={(text) => {
-                setFileName(text);
-              }}
-            />
-            <Text style={style.text}>② 选择文件夹并授权</Text>
-            <Button
-              backgroundColor={Colors.blue20}
-              label="选择文件夹"
-              borderRadius={7}
-              style={{ height: 45 }}
-              onPress={async () => {
-                const data = {};
-                Object
-                  .keys(localStorage.cache)
-                  .filter(v => v.substr(0, 4) != 'goog')
-                  .forEach(key => data[key] = localStorage[key]);
-
-                const permissions = await StorageAccessFramework.requestDirectoryPermissionsAsync();
-                if (permissions.granted) {
-                  const uri = permissions.directoryUri;
-                  let fileArr = [];
-                  let fileUri = '';
-                  try {
-                    fileArr = await StorageAccessFramework.readDirectoryAsync(uri);
-                  } catch (error) {
-                    fileArr = await FileSystem.readDirectoryAsync(uri);
-                  } finally {
-                    fileUri = uri + '/' + fileName + '.json';
-                    try {
-                      if (!fileArr.includes(fileName)) {
-                        fileUri = await StorageAccessFramework.createFileAsync(uri, fileName, 'application/json');
-                      }
-                      console.log(fileUri)
-                      await FileSystem.writeAsStringAsync(fileUri, JSON.stringify(data));
-                      setToastMessage("数据导出成功！");
-                      setIsToastShow(true);
-                    } catch (error) {
-                      await FileSystem.writeAsStringAsync(fileUri, JSON.stringify(data));
-                      setToastMessage("数据导出成功！");
-                      setIsToastShow(true);
-                    }
-                  }
-                }
-              }}
-            />
-          </View>
-        </Dialog> */}
         <Piece title="深色模式" noBottomBorder>
           <Switch
             width={60}
@@ -168,6 +99,7 @@ export default function ProfileScreen({ navigation }) {
               }
               const json = await FileSystem.readAsStringAsync(res.uri);
               const data = JSON.parse(json);
+              await AsyncStorage.clear();
               for (const key in data) {
                 await AsyncStorage.setItem(key, data[key]);
               }
@@ -196,7 +128,15 @@ export default function ProfileScreen({ navigation }) {
         >
           <Image source={isDark ? ar_dark : ar_default} style={{ height: 26, width: 26 }} />
         </Piece>
-        <Piece title="关于" pressDisabled={false}>
+        <Piece
+          title="关于"
+          pressDisabled={false}
+          onPress={
+            () => {
+              navigation.navigate('About');
+            }
+          }
+        >
           <Image source={isDark ? ar_dark : ar_default} style={{ height: 26, width: 26 }} />
         </Piece>
       </SafeAreaView>

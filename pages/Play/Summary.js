@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableWithoutFeedback, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableWithoutFeedback, TouchableHighlight, Image } from 'react-native';
 import life from '../../lifeInitial';
 import { summary } from '../../liferestart/functions/summary';
 import { useTheme } from '@react-navigation/native';
+import gou from '../../resource/images/gou.png';
 
 export default function Summary({ route, navigation }) {
 
@@ -40,7 +41,6 @@ export default function Summary({ route, navigation }) {
       margin: 20,
       borderColor: theme.colors.border,
       borderWidth: 2,
-      // borderRadius: 10,
       backgroundColor: theme.colors.card,
     },
     text: {
@@ -71,9 +71,10 @@ export default function Summary({ route, navigation }) {
       fontSize: 24,
     },
     talentBox: {
+      flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      height: 36,
+      minHeight: 36,
       borderColor: theme.colors.border,
       backgroundColor: theme.colors.card,
       borderWidth: 2,
@@ -241,7 +242,12 @@ export default function Summary({ route, navigation }) {
               setSelectedTalent(item.id);
             }}
           >
-            <View style={[style.talentBox, { backgroundColor: getTalentBoxColor(item.grade), borderColor: selectedTalent === item.id ? '#0e0' : theme.colors.border }]}>
+            <View style={[style.talentBox, { backgroundColor: getTalentBoxColor(item.grade) }]}>
+              {
+                selectedTalent === item.id ?
+                  <Image source={gou} style={{ width: 26, height: 26 }} />
+                  : null
+              }
               <Text style={style.talentText}>
                 {item.name}
                 （

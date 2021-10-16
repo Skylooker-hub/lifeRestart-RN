@@ -1,7 +1,6 @@
 import React, { useLayoutEffect } from 'react';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StatusBar } from 'expo-status-bar';
 import { Provider } from 'react-redux';
 import store from './store';
 import Navigation from './pages/Navigation';
@@ -21,7 +20,6 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <StatusBar style="auto" />
       <Navigation />
     </Provider>
   );

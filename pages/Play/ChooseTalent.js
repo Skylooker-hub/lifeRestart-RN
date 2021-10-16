@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useTheme } from '@react-navigation/native';
 import {
-  StyleSheet, TouchableHighlight, View, Text, ScrollView, TouchableWithoutFeedback
+  StyleSheet, TouchableHighlight, View, Text, ScrollView, TouchableWithoutFeedback, Image
 } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Toast } from 'react-native-ui-lib';
 import life from '../../lifeInitial';
+import gou from '../../resource/images/gou.png';
 
 export default function ChooseTalent({ navigation }) {
 
@@ -58,9 +59,10 @@ export default function ChooseTalent({ navigation }) {
       fontSize: 24,
     },
     talentBox: {
+      flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      height: 36,
+      minHeight: 36,
       borderColor: theme.colors.border,
       backgroundColor: theme.colors.card,
       borderWidth: 2,
@@ -117,7 +119,12 @@ export default function ChooseTalent({ navigation }) {
                       setSelectedList(newSelectedList);
                     }}
                   >
-                    <View style={[style.talentBox, { backgroundColor: getTalentBoxColor(item.grade), borderColor: isSelected(item.id) ? '#0e0' : theme.colors.border }]}>
+                    <View style={[style.talentBox, { backgroundColor: getTalentBoxColor(item.grade) }]}>
+                      {
+                        isSelected(item.id) ?
+                          <Image source={gou} style={{ width: 26, height: 26 }} />
+                          : null
+                      }
                       <Text style={style.talentText}>
                         {item.name}
                         （
