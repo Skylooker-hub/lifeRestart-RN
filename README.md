@@ -1,8 +1,14 @@
 # LifeRestart ReactNative Version
 
+![splash](/assets/splash.png)
+![startScreen](/assets/startScreen.png)
+![giftScreen](/assets/giftScreen.png)
+![propertyScreen](/assets/propertyScreen.png)
+![gameScreen](/assets/gameScreen.png)
+
 ## features
 
-- 无广告! 无广告! 无广告!
+- 无广告!
 - 支持本地存储 与 加载 json 文件
 
 目前仅支持编译为Android App
