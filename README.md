@@ -1,10 +1,6 @@
 # LifeRestart ReactNative Version
 
-<img alt="splash" style="height: 350px; width: 175px" src="./assets/splash.png" />
-<img alt="startScreen" style="height: 350px; width: 175px" src="./assets/startScreen.png" />
-<img alt="giftScreen" style="height: 350px; width: 175px" src="./assets/giftScreen.png" />
-<img alt="propertyScreen" style="height: 350px; width: 175px" src="./assets/propertyScreen.png" />
-<img alt="gameScreen" style="height: 350px; width: 175px" src="./assets/gameScreen.png" />
+<img alt="splash" style="height: 350px; width: 175px" src="./assets/splash.png" /><img alt="startScreen" style="height: 350px; width: 175px" src="./assets/startScreen.png" /><img alt="giftScreen" style="height: 350px; width: 175px" src="./assets/giftScreen.png" /><img alt="propertyScreen" style="height: 350px; width: 175px" src="./assets/propertyScreen.png" /><img alt="gameScreen" style="height: 350px; width: 175px" src="./assets/gameScreen.png" />
 
 ## features
 
