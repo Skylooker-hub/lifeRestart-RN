@@ -1,10 +1,10 @@
 # LifeRestart ReactNative Version
 
-![splash](/assets/splash.png)
-![startScreen](/assets/startScreen.png)
-![giftScreen](/assets/giftScreen.png)
-![propertyScreen](/assets/propertyScreen.png)
-![gameScreen](/assets/gameScreen.png)
+<img alt="splash" style="height: 350px; width: 175px" src="./assets/splash.png" />
+<img alt="startScreen" style="height: 350px; width: 175px" src="./assets/startScreen.png" />
+<img alt="giftScreen" style="height: 350px; width: 175px" src="./assets/giftScreen.png" />
+<img alt="propertyScreen" style="height: 350px; width: 175px" src="./assets/propertyScreen.png" />
+<img alt="gameScreen" style="height: 350px; width: 175px" src="./assets/gameScreen.png" />
 
 ## features
 
@@ -15,11 +15,23 @@
 
 ## build
 
-1. npm i expo-cli -g
+1.
 
-2. cd <project dir \> & npm i
+```bash
+  npm i expo-cli -g
+```
 
-3. expo build:android
+2.
+
+```bash
+ cd <project dir> & npm i
+```
+
+3.
+
+```bash
+  expo build:android
+```
 
 ## Downloading
 
